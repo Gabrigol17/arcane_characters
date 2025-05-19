@@ -41,7 +41,6 @@ class Character {
       );
 }
 }
-// aqui la conversion de Http creado en Mocky a JSON
 
 buscarpersonaje()async{
   final url = Uri.parse('https://run.mocky.io/v3/5b15899d-6078-451c-be79-96cee4189414');
