@@ -6,3 +6,6 @@ sealed class CharacterblocEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class LoadCharacterEvent extends CharacterblocEvent{
+}

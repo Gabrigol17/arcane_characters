@@ -7,4 +7,8 @@ sealed class CharacterblocState extends Equatable {
   List<Object> get props => [];
 }
 
-final class CharacterblocInitial extends CharacterblocState {}
+class CharacterblocInitial extends CharacterblocState {}
+class CharacterblocLoading extends CharacterblocState {}
+class CharacterblocSuccess extends CharacterblocState {}
+class CharacterblocFailure extends CharacterblocState {}
+
