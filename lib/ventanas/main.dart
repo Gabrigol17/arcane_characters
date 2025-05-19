@@ -1,27 +1,42 @@
 import 'package:flutter/material.dart';
-
 void main(){
-  runApp(MyApp());
+  runApp(Myapp());
 }
-class MyApp extends StatelessWidget {
+class Myapp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Arcane Characters',
-      home: Scaffold(backgroundColor: const Color.fromARGB(255, 88, 21, 222) ,
-        appBar: AppBar(
-          title: Text('Arcane Characters'),
-        ),
+      title: 'Arcane App',
+      home: Scaffold(
+        backgroundColor: Colors.black,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Jinx!'),
-              Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5fBUhtyVjrQbj5JcdUSHDh7uwaOqEvtHK4owpmMxeuBOxvNZusyLDg8VglqzJ678N_tw&usqp=CAU'),
+            children: [Image(image: NetworkImage(
+              'https://upload.wikimedia.org/wikipedia/commons/f/f2/Arcane_Title_Text.png')
+              ),
+              const SizedBox(height: 20),
+              Text(
+                'Arcane Characters',
+                style: TextStyle(
+                  color: Colors.pinkAccent,
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.pinkAccent,
+                  foregroundColor: Colors.black,
+                ),
+                child: Text('Ver personajes'),
+              ),
             ],
           ),
         ),
       ),
-      );
+    );
   }
 }
