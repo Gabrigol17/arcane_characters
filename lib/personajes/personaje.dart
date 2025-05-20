@@ -29,19 +29,18 @@ class Character {
   factory Character.fromJson(Map<String, dynamic> json) {
     return Character(
       id: json['id'],
-      name: json['nombre'],  // Asegúrate de que coincida con tu JSON
+      name: json['nombre'],  
       alias: json['alias'],
       rol: json['rol'],
       region: json['region'],
       description: json['descripcion'],
       habilidades: List<String>.from(json['habilidades']),
       apariciones: List<String>.from(json['apariciones']),
-      actorVoz: json['actor_voz'],  // Cuida el casing
+      actorVoz: json['actor_voz'],  
       imagen: json['imagen']
       );
 }
 }
-
 buscarpersonaje()async{
   final url = Uri.parse('https://run.mocky.io/v3/5b15899d-6078-451c-be79-96cee4189414');
 

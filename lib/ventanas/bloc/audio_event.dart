@@ -6,12 +6,12 @@ abstract class AudioEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
-enum AudioAction { play, pause, stop }
+enum AudioAction { play, pause}
 
 class AudioControlEvent extends AudioEvent {
-  AudioAction action;
-  AudioControlEvent(this.action);
+  AudioAction accion;
+  AudioControlEvent(this.accion);
   @override
-  List<Object> get props => [action];
+  List<Object> get props => [accion];
 }
 

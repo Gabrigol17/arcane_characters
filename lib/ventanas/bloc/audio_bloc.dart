@@ -11,25 +11,17 @@ class AudioBloc extends Bloc<AudioEvent, AudioState> {
   AudioBloc() : super(AudioStop()) {
     on<AudioControlEvent>((event, emit) async {
       try {
-        if (event.action == AudioAction.play) {
+        if (event.accion == AudioAction.play) {
           await _audioPlayer.play(AssetSource('audio/enemy.mp3'));
           emit(AudioPlay());
-        } else if (event.action == AudioAction.pause) {
+        } else if (event.accion == AudioAction.pause) {
           await _audioPlayer.pause();
           emit(AudioPause());
-        } else if (event.action == AudioAction.stop) {
-          await _audioPlayer.stop();
-          emit(AudioStop());
         }
       } catch (error) {
         emit(AudioFailure('Error: $error'));
       }
     });
   }
-
-  @override
-  Future<void> close() {
-    _audioPlayer.dispose();
-    return super.close();
   }
-}
+

@@ -12,7 +12,7 @@ class Inicio extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.network('https://upload.wikimedia.org/wikipedia/commons/f/f2/Arcane_Title_Text.png'),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             Text(
               'Arcane Characters',
               style: TextStyle(
@@ -21,7 +21,7 @@ class Inicio extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
@@ -30,7 +30,7 @@ class Inicio extends StatelessWidget {
               ),
               child: Text('Ver personajes'),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 context.read<AudioBloc>().add(AudioControlEvent(AudioAction.play));
@@ -44,7 +44,7 @@ class Inicio extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
             onPressed: () {
-              context.read<AudioBloc>().add(AudioControlEvent(AudioAction.stop));
+              context.read<AudioBloc>().add(AudioControlEvent(AudioAction.pause));
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.pink,
