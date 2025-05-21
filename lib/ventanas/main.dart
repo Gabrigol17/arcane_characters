@@ -1,11 +1,23 @@
-import 'package:arcane_characters/ventanas/inicio.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/audio_bloc.dart';
+import 'package:arcane_characters/bloc/characterbloc_bloc.dart'; // <-- Asegúrate de importar tu CharacterblocBloc
+import 'package:arcane_characters/ventanas/inicio.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<AudioBloc>(
+          create: (_) => AudioBloc(),
+        ),
+        BlocProvider<CharacterblocBloc>(
+          create: (_) => CharacterblocBloc(),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,13 +25,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Arcane App',
-      home: BlocProvider(
-        create: (_) => AudioBloc(),
-        child: Inicio(),
-      ),
+      home: Inicio(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
-
-
-  

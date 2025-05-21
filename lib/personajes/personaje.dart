@@ -4,53 +4,45 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class Character {
-  int? id;
-  String? name;
-  String? alias;
-  String? rol;
-  String? region;
-  String? description;
-  List<String> habilidades = [];
-  List<String> apariciones = [];
-  String? actorVoz;
-  String? imagen;
+  final int id;
+  final String nombre;
+  final String imagen;
+  final String descripcion;
+
   Character({
-    this.id,
-    this.name,
-    this.alias,
-    this.rol,
-    this.region,
-    this.description,
-    required this.habilidades,
-    required this.apariciones,
-    this.actorVoz,
-    this.imagen,
+    required this.id,
+    required this.nombre,
+    required this.imagen,
+    required this.descripcion,
   });
+
   factory Character.fromJson(Map<String, dynamic> json) {
     return Character(
       id: json['id'],
-      name: json['nombre'],  
-      alias: json['alias'],
-      rol: json['rol'],
-      region: json['region'],
-      description: json['descripcion'],
-      habilidades: List<String>.from(json['habilidades']),
-      apariciones: List<String>.from(json['apariciones']),
-      actorVoz: json['actor_voz'],  
-      imagen: json['imagen']
-      );
+      nombre: json['nombre'],
+      imagen: json['imagen'],
+      descripcion: json['descripcion'],
+    );
+  }
 }
-}
-buscarpersonaje()async{
-  final url = Uri.parse('https://run.mocky.io/v3/5b15899d-6078-451c-be79-96cee4189414');
+Future<Character?> buscarpersonaje(int id) async {
+  final url = Uri.parse('https://run.mocky.io/v3/5270cb7f-8fec-4993-8c62-60ef5050bbfe');
 
   final response = await http.get(url);
 
   if (response.statusCode == 200) {
-    final datos = jsonDecode(response.body);
-    return Character.fromJson(datos);
+    final List<dynamic> data = json.decode(response.body);
+    final personajeData = data.firstWhere(
+      (item) => item['id'] == id,
+      orElse: () => null,
+    );
+
+    if (personajeData != null) {
+      return Character.fromJson(personajeData);
+    } else {
+      return null; 
+    }
   } else {
-    print('Error al obtener el personaje: ${response.statusCode}');
-    
-}
+    throw Exception('Error al obtener datos del servidor');
+  }
 }

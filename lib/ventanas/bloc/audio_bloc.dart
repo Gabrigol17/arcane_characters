@@ -8,7 +8,7 @@ part 'audio_state.dart';
 class AudioBloc extends Bloc<AudioEvent, AudioState> {
   final AudioPlayer _audioPlayer = AudioPlayer();
 
-  AudioBloc() : super(AudioStop()) {
+  AudioBloc() : super(AudioPause()) {
     on<AudioControlEvent>((event, emit) async {
       try {
         if (event.accion == AudioAction.play) {

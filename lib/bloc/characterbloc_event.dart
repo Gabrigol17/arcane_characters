@@ -7,4 +7,9 @@ sealed class CharacterblocEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class LoadCharacterEvent extends CharacterblocEvent{}
+class LoadCharacterEvent extends CharacterblocEvent{
+  final int id;
+  const LoadCharacterEvent(this.id);
+  @override
+  List<Object> get props => [id];
+}

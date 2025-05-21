@@ -11,7 +11,6 @@ class AudioPlay extends AudioState {}
 
 class AudioPause extends AudioState {}
 
-class AudioStop extends AudioState {}
 
 class AudioFailure extends AudioState {
   final String mensajeError;
