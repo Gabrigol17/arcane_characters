@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/audio_bloc.dart';
-import 'package:arcane_characters/bloc/characterbloc_bloc.dart'; // <-- Asegúrate de importar tu CharacterblocBloc
+import 'package:arcane_characters/bloc/characterbloc_bloc.dart'; 
 import 'package:arcane_characters/ventanas/inicio.dart';
 
 void main() {

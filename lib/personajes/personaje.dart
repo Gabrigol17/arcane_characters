@@ -26,7 +26,7 @@ class Character {
   }
 }
 Future<Character?> buscarpersonaje(int id) async {
-  final url = Uri.parse('https://run.mocky.io/v3/5270cb7f-8fec-4993-8c62-60ef5050bbfe');
+  final url = Uri.parse('https://run.mocky.io/v3/a56f3c8b-656b-4536-93d8-1e83376bed1c');
 
   final response = await http.get(url);
 
@@ -43,6 +43,6 @@ Future<Character?> buscarpersonaje(int id) async {
       return null; 
     }
   } else {
-    throw Exception('Error al obtener datos del servidor');
+    throw Exception('Error al cargar personaje');
   }
 }

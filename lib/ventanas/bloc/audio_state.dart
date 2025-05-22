@@ -9,6 +9,8 @@ abstract class AudioState extends Equatable {
 
 class AudioPlay extends AudioState {}
 
+class AudioInitial extends AudioState {}
+
 class AudioPause extends AudioState {}
 
 

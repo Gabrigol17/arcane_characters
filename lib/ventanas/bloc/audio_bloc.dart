@@ -6,16 +6,16 @@ part 'audio_event.dart';
 part 'audio_state.dart';
 
 class AudioBloc extends Bloc<AudioEvent, AudioState> {
-  final AudioPlayer _audioPlayer = AudioPlayer();
+  final AudioPlayer audioPlayer = AudioPlayer();
 
   AudioBloc() : super(AudioPause()) {
     on<AudioControlEvent>((event, emit) async {
       try {
         if (event.accion == AudioAction.play) {
-          await _audioPlayer.play(AssetSource('audio/enemy.mp3'));
+          await audioPlayer.play(AssetSource('audio/enemy.mp3'));
           emit(AudioPlay());
         } else if (event.accion == AudioAction.pause) {
-          await _audioPlayer.pause();
+          await audioPlayer.pause();
           emit(AudioPause());
         }
       } catch (error) {
