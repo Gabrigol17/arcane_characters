@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LoadingScreen extends StatelessWidget {
-  const LoadingScreen({super.key});
+class PantallaCargando extends StatelessWidget {
+  const PantallaCargando({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,6 @@
 import 'package:arcane_characters/bloc/characterbloc_bloc.dart';
+import 'package:arcane_characters/ventanas/pantallacargando.dart';
+import 'package:arcane_characters/ventanas/pantallafailure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,7 +16,9 @@ class DetallePersonaje extends StatelessWidget {
       create: (_) => CharacterblocBloc()..add(LoadCharacterEvent(id)),
       child: BlocBuilder<CharacterblocBloc, CharacterblocState>(
         builder: (context, state) {
-          if (state is CharacterblocSuccess) {
+          if (state is CharacterblocLoading) {
+            return PantallaCargando();
+              } else if (state is CharacterblocSuccess) {
             final personaje = state.personaje!;
             return Scaffold(
               body: Stack(
@@ -28,14 +32,14 @@ class DetallePersonaje extends StatelessWidget {
                   Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                        children: [
                         Text(
                           personaje.nombre,
                           style: const TextStyle(
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            shadows: [Shadow(blurRadius: 3, color: Colors.black)],
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          shadows: [Shadow(blurRadius: 3, color: Colors.black)],
                           ),
                         ),
                         const SizedBox(height: 20),
@@ -43,20 +47,25 @@ class DetallePersonaje extends StatelessWidget {
                           personaje.imagen ?? '',
                           height: 200,
                           errorBuilder: (_, __, ___) =>
-                              const Icon(Icons.broken_image, size: 80, color: Colors.white),
+                            const Icon(Icons.broken_image, size: 80, color: Colors.white),
                         ),
                         const SizedBox(height: 20),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 24),
                           child: Text(
-                            personaje.descripcion ?? 'Sin descripción.',
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              shadows: [Shadow(blurRadius: 3, color: Colors.black)],
-                            ),
+                          personaje.descripcion ?? 'Sin descripción',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            shadows: [Shadow(blurRadius: 3, color: Colors.black)],
                           ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        IconButton(
+                          icon: const Icon(Icons.arrow_back, color: Colors.white),
+                          onPressed: () => Navigator.pop(context),
                         ),
                       ],
                     ),
@@ -65,11 +74,7 @@ class DetallePersonaje extends StatelessWidget {
               ),
             );
           } else {
-            return const Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(), 
-              ),
-            );
+            return PantallaFailure();
           }
         },
       ),
