@@ -8,7 +8,9 @@ sealed class CharacterblocState extends Equatable {
 }
 
 class CharacterblocInitial extends CharacterblocState {}
+
 class CharacterblocLoading extends CharacterblocState {}
+
 class CharacterblocSuccess extends CharacterblocState {
   Character? personaje;
   CharacterblocSuccess(this.personaje);

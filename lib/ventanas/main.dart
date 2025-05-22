@@ -1,27 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc/audio_bloc.dart';
+import 'package:arcane_characters/bloc/characterbloc_bloc.dart'; 
+import 'package:arcane_characters/ventanas/inicio.dart';
 
-void main(){
-  runApp(MyApp());
+void main() {
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<AudioBloc>(
+          create: (_) => AudioBloc(),
+        ),
+        BlocProvider<CharacterblocBloc>(
+          create: (_) => CharacterblocBloc(),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Arcane Characters',
-      home: Scaffold(backgroundColor: const Color.fromARGB(255, 88, 21, 222) ,
-        appBar: AppBar(
-          title: Text('Arcane Characters'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Jinx!'),
-              Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5fBUhtyVjrQbj5JcdUSHDh7uwaOqEvtHK4owpmMxeuBOxvNZusyLDg8VglqzJ678N_tw&usqp=CAU'),
-            ],
-          ),
-        ),
-      ),
-      );
+      title: 'Arcane App',
+      home: Inicio(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
