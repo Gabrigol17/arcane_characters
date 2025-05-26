@@ -9,7 +9,7 @@ class ElegirPersonaje extends StatelessWidget {
     {"id": 4, "nombre": "Caitlyn", "Imagen": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Caitlyn_50.jpg"},
     {"id": 5, "nombre": "Jayce", "Imagen": "https://i.redd.it/ls5tufd3ueib1.jpg"},
     {"id": 6, "nombre": "Silco", "Imagen": "https://pbs.twimg.com/media/F6tcTSQXMAA_n0C.png"},
-    {"id": 7, "nombre": "Vander", "Imagen": "https://i.redd.it/ttecpls4ccib1.jpg"},
+    {"id": 7, "nombre": "Vander/Warwick", "Imagen": "https://i.redd.it/ttecpls4ccib1.jpg"},
     {"id": 8, "nombre": "Mel", "Imagen": "https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/Mel_0.jpg"},
   ];
 
@@ -53,7 +53,7 @@ class ElegirPersonaje extends StatelessWidget {
                 child: Column(
                   children: [
                     CircleAvatar(
-                      radius: 40,
+                      radius: 70,
                       backgroundImage: NetworkImage(personaje['Imagen']),
                     ),
                     SizedBox(height: 10),
