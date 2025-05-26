@@ -1,4 +1,5 @@
 import 'package:arcane_characters/bloc/characterbloc_bloc.dart';
+import 'package:arcane_characters/personajes/personaje.dart';
 import 'package:arcane_characters/ventanas/pantallacargando.dart';
 import 'package:arcane_characters/ventanas/pantallafailure.dart';
 import 'package:flutter/material.dart';
@@ -18,56 +19,79 @@ class DetallePersonaje extends StatelessWidget {
         builder: (context, state) {
           if (state is CharacterblocLoading) {
             return PantallaCargando();
-              } else if (state is CharacterblocSuccess) {
-            final personaje = state.personaje!;
+          } else if (state is CharacterblocSuccess) {
+            final personajefinal = state.personaje;
             return Scaffold(
               body: Stack(
-                fit: StackFit.expand,
                 children: [
                   Image.network(
-                    'https://imgs.search.brave.com/y8G0-rkQTmDtdgFG4Lyd3h78Vt0HXetQVCX5TOYfSWQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMxLnNyY2RuLmNv/bS93b3JkcHJlc3Mv/d3AtY29udGVudC91/cGxvYWRzLzIwMjQv/MTAvcGlsdG92ZXIt/aW4tdGhlLWZpcnN0/LXNlYXNvbi1vZi1h/cmNhbmUuanBn',
+                    'https://wiki.leagueoflegends.com/en-us/images/Piltover_Arcane_02.jpg?d7915',
                     fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
                   ),
-                  Container(color: Colors.black.withOpacity(0.4)),
-                  Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                        Text(
-                          personaje.nombre,
-                          style: const TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          shadows: [Shadow(blurRadius: 3, color: Colors.black)],
-                          ),
+                  Container(
+                    color: Colors.black.withOpacity(0.6),
+                  ),
+                  SafeArea(
+                    child: Center(
+                      child: Container(
+                        padding: EdgeInsets.all(24),
+                        margin: EdgeInsets.symmetric(horizontal: 24),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.7),
+                          borderRadius: BorderRadius.circular(24.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.5),
+                              blurRadius: 10.0,
+                              offset: Offset(0, 4),
+                            ),
+                          ],
                         ),
-                        const SizedBox(height: 20),
-                        Image.network(
-                          personaje.imagen ?? '',
-                          height: 200,
-                          errorBuilder: (_, __, ___) =>
-                            const Icon(Icons.broken_image, size: 80, color: Colors.white),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(24.0),
+                              child: Image.network(
+                                personajefinal!.imagen,
+                                width: 200,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            SizedBox(height: 23.0),
+                            Text(
+                              personajefinal.nombre,
+                              style: TextStyle(
+                                fontSize: 24.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(height: 10.0),
+                            Text(
+                              personajefinal.descripcion,
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                color: Colors.white,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(height: 10),
+                            IconButton(
+                              icon: Icon(
+                                Icons.arrow_back,
+                                color: Colors.red,
+                              ),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
                         ),
-                        const SizedBox(height: 20),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 24),
-                          child: Text(
-                          personaje.descripcion ?? 'Sin descripción',
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            shadows: [Shadow(blurRadius: 3, color: Colors.black)],
-                          ),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        IconButton(
-                          icon: const Icon(Icons.arrow_back, color: Colors.white),
-                          onPressed: () => Navigator.pop(context),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ],
