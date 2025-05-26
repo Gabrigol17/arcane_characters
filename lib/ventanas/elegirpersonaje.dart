@@ -19,22 +19,26 @@ class ElegirPersonaje extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: 
       AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         title: Text(
           'Seleccionar un Personaje', 
           style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-            color: Colors.white),
-            ),
-          centerTitle: true,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(20),
-            ),
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
+        color: Colors.white),
+        ),
+        centerTitle: true,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+        bottom: Radius.circular(20),
           ),
-          backgroundColor: Colors.transparent,
-          ),
+        ),
+        backgroundColor: Colors.transparent,
+      ),
           body: Center(
             child: Wrap(
             spacing: 20,
@@ -53,7 +57,7 @@ class ElegirPersonaje extends StatelessWidget {
                 child: Column(
                   children: [
                     CircleAvatar(
-                      radius: 40,
+                      radius: 70,
                       backgroundImage: NetworkImage(personaje['Imagen']),
                     ),
                     SizedBox(height: 10),
@@ -64,7 +68,7 @@ class ElegirPersonaje extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
-                    )
+                    ),
                   ],
                 ),
               );
