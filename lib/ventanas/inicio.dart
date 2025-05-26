@@ -21,7 +21,7 @@ class Inicio extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('imagenes/arcanelogo.png', height: 180),
+                Image.asset('assets/imagenes/arcanelogo.png', height: 180), 
                 SizedBox(height: 20),
                 Text(
                   'Arcane Characters',
