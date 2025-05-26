@@ -1,4 +1,5 @@
 import 'package:arcane_characters/bloc/characterbloc_bloc.dart';
+import 'package:arcane_characters/personajes/personaje.dart';
 import 'package:arcane_characters/ventanas/pantallacargando.dart';
 import 'package:arcane_characters/ventanas/pantallafailure.dart';
 import 'package:flutter/material.dart';
@@ -11,73 +12,74 @@ class DetallePersonaje extends StatelessWidget {
   const DetallePersonaje({super.key, required this.id});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return BlocProvider(
       create: (_) => CharacterblocBloc()..add(LoadCharacterEvent(id)),
       child: BlocBuilder<CharacterblocBloc, CharacterblocState>(
-        builder: (context, state) {
+        builder: (context, state) { 
           if (state is CharacterblocLoading) {
             return PantallaCargando();
-              } else if (state is CharacterblocSuccess) {
-            final personaje = state.personaje!;
+          } else if (state is CharacterblocSuccess){
+            final personajefinal = state.personaje;
             return Scaffold(
               body: Stack(
-                fit: StackFit.expand,
-                children: [
-                  Image.network(
-                    'https://imgs.search.brave.com/y8G0-rkQTmDtdgFG4Lyd3h78Vt0HXetQVCX5TOYfSWQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMxLnNyY2RuLmNv/bS93b3JkcHJlc3Mv/d3AtY29udGVudC91/cGxvYWRzLzIwMjQv/MTAvcGlsdG92ZXIt/aW4tdGhlLWZpcnN0/LXNlYXNvbi1vZi1h/cmNhbmUuanBn',
-                    fit: BoxFit.cover,
-                  ),
-                  Container(color: Colors.black.withOpacity(0.4)),
-                  Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                        Text(
-                          personaje.nombre,
-                          style: const TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          shadows: [Shadow(blurRadius: 3, color: Colors.black)],
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        Image.network(
-                          personaje.imagen ?? '',
-                          height: 200,
-                          errorBuilder: (_, __, ___) =>
-                            const Icon(Icons.broken_image, size: 80, color: Colors.white),
-                        ),
-                        const SizedBox(height: 20),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 24),
-                          child: Text(
-                          personaje.descripcion ?? 'Sin descripción',
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            shadows: [Shadow(blurRadius: 3, color: Colors.black)],
-                          ),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        IconButton(
-                          icon: const Icon(Icons.arrow_back, color: Colors.white),
-                          onPressed: () => Navigator.pop(context),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                 children: [
+                  Image.network('https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/01/Memorable-Moments-From-Arcane.jpg?q=70&fit=contain&w=1200&h=628&dpr=1', 
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: double.infinity),
+                  Container(
+                    color: Colors.black.withOpacity(0.6),),
+                    SafeArea(
+                      child: 
+                      Center(
+                        child: 
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(24.0),
+                              child:  Image.network(
+                                personajefinal!.imagen,
+                                width: 200,
+                                height: 200,
+                                fit: BoxFit.cover
+                                ),
+                            ),
+                            SizedBox(height: 23.0),
+                            Text(personajefinal.nombre,
+                                style: TextStyle(
+                                  fontSize: 24.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white
+                                ),
+                            ),
+                            SizedBox(height: 10.0),
+                            Text(personajefinal.descripcion,
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  color: Colors.white
+                                ),
+                                textAlign: TextAlign.center,
+                                ),
+                            SizedBox(height: 10,),
+                            IconButton(
+                              icon: Icon(Icons.arrow_back, color: Colors.red
+                                ),
+                                onPressed: () {
+                                Navigator.of(context).pop();
+                                },
+                            )
+                          ],
+                        ),)) 
+                 ],
               ),
             );
           } else {
             return PantallaFailure();
           }
         },
-      ),
+    )
     );
   }
 }
