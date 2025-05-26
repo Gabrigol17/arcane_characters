@@ -57,7 +57,7 @@ class ElegirPersonaje extends StatelessWidget {
                 child: Column(
                   children: [
                     CircleAvatar(
-                      radius: 70,
+                      radius: 60,
                       backgroundImage: NetworkImage(personaje['Imagen']),
                     ),
                     SizedBox(height: 10),
